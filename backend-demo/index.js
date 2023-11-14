@@ -4,6 +4,7 @@ const { MongoClient } = require("mongodb");
 const SocketServer = require("ws").Server;
 const uuid = require("uuid");
 const _ = require("lodash");
+const path = require("path");
 const { applyOp } = require("./op");
 
 const defaultData = {
@@ -44,8 +45,10 @@ async function getData() {
   return data;
 }
 
+app.use('/', express.static(path.join(__dirname, '../storybook-static')))
+
 // get current workbook data
-app.get("/", async (req, res) => {
+app.get("/data", async (req, res) => {
   res.json(await getData());
 });
 

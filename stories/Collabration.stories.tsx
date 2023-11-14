@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Workbook> = ({ ...args }) => {
   }, []);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8081/ws");
+    const socket = new WebSocket(`ws://${window.location.host}/collaborationSheet`);
     wsRef.current = socket;
 
     socket.onopen = () => {
